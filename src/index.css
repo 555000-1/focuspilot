@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14%;
+    --input: 0 0% 16%;
+    --ring: 24 100% 50%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+  }
+  ::selection {
+    background: #ff6b00;
+    color: #fff;
+  }
+}
+
+/* ---------- Section marker: orange line + uppercase label ---------- */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #999;
+}
+.section-marker::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: #ff6b00;
+  flex-shrink: 0;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Firefly canvas ---------- */
+.firefly-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- Hero soft mask ---------- */
+.hero-mask {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 82%,
+    transparent 100%
+  );
+}
+
+/* ---------- Glow button ---------- */
+.btn-glow {
+  box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.45);
+  transition: box-shadow 0.3s ease, transform 0.15s ease, background-color 0.3s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 8px 32px -4px rgba(255, 107, 0, 0.55);
+  transform: translateY(-2px);
+}
+
+/* ---------- Frosted nav ---------- */
+.nav-frosted {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 10, 10, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ---------- Subtle grid bg for app ---------- */
+.app-grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---------- Timer ring ---------- */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.35); }
+  70% { box-shadow: 0 0 0 14px rgba(255, 107, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #ff6b00; }
